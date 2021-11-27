@@ -75,11 +75,10 @@ theorem http_equiv: "place_order_http os order = place_order os order"
   done
 
 theorem
-  assumes "order = ord"
-  and "ov = \<lparr> amount = (amount ord), amount_view = ''123'' \<rparr>"
+  assumes "(amount ov) = (amount order)"
   shows "project (place_order_view (ovs, os) ov) = place_order os order"
   using assms
-  apply(cases ord)
+  apply(cases order)
   apply(simp add: project_def http_equiv order_from_def state_from_def)
   done
 
